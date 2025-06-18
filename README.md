@@ -14,6 +14,8 @@ XAI-MedKG transforms textual medical predictions from GPT-4 into structured know
 - **Innovation Detection**: Identifies novel patterns and associations in model predictions
 - **Counterfactual Analysis**: Provides alternative diagnostic scenarios and reasoning
 - **Interactive Interface**: Allows medical experts to continuously enrich the reference knowledge base
+- **JSON Graph Generation**: Creates JSON-formatted knowledge graphs with built-in parser support
+- **Flexible Data Input**: Processes both CSV medical datasets and structured GPT output responses
 
 ## Technology Stack
 
@@ -21,6 +23,8 @@ XAI-MedKG transforms textual medical predictions from GPT-4 into structured know
 - **Backend**: Flask
 - **Data Processing**: Medical datasets (CSV format)
 - **AI Integration**: GPT-4 API
+- **Graph Format**: JSON with custom parser
+- **Data Sources**: CSV files and structured GPT responses
 
 ## How It Works
 
@@ -29,3 +33,4 @@ XAI-MedKG transforms textual medical predictions from GPT-4 into structured know
 3. **Comparison**: Match against reference medical knowledge base
 4. **Analysis**: Generate explainability reports and validation scores
 5. **Output**: Interactive visualizations and detailed explanations
+6. **JSON Parsing**: Convert CSV data or GPT structured responses into JSON graph format
