@@ -1,0 +1,122 @@
+{
+  "nodes": [
+    {
+      "id": "Eczema",
+      "type": "Disease"
+    },
+    {
+      "id": "Fever",
+      "type": "Symptom",
+      "is_novel": false
+    },
+    {
+      "id": "Cough",
+      "type": "Symptom",
+      "is_novel": false
+    },
+    {
+      "id": "Fatigue",
+      "type": "Symptom",
+      "is_novel": false
+    },
+    {
+      "id": "Difficulty Breathing",
+      "type": "Symptom",
+      "is_novel": false
+    },
+    {
+      "id": "headache",
+      "type": "Symptom",
+      "is_novel": true
+    },
+    {
+      "id": "nausea",
+      "type": "Symptom",
+      "is_novel": false
+    },
+    {
+      "id": "Young Adult Age",
+      "type": "Age Group"
+    },
+    {
+      "id": "Female Gender",
+      "type": "Gender"
+    },
+    {
+      "id": "Normal Blood Pressure",
+      "type": "Blood Pressure"
+    },
+    {
+      "id": "High Cholesterol",
+      "type": "Cholesterol Level"
+    }
+  ],
+  "links": [
+    {
+      "source": "Eczema",
+      "target": "Fever",
+      "relationship": "DOES_NOT_HAVE_SYMPTOM",
+      "weight": 1.0,
+      "is_novel": false
+    },
+    {
+      "source": "Eczema",
+      "target": "Cough",
+      "relationship": "DOES_NOT_HAVE_SYMPTOM",
+      "weight": 1.0,
+      "is_novel": false
+    },
+    {
+      "source": "Eczema",
+      "target": "Fatigue",
+      "relationship": "HAS_SYMPTOM",
+      "weight": 1.0,
+      "is_novel": false
+    },
+    {
+      "source": "Eczema",
+      "target": "Difficulty Breathing",
+      "relationship": "DOES_NOT_HAVE_SYMPTOM",
+      "weight": 1.0,
+      "is_novel": false
+    },
+    {
+      "source": "Eczema",
+      "target": "headache",
+      "relationship": "HAS_SYMPTOM",
+      "weight": 1.0,
+      "is_novel": true
+    },
+    {
+      "source": "Eczema",
+      "target": "nausea",
+      "relationship": "DOES_NOT_HAVE_SYMPTOM",
+      "weight": 1.0,
+      "is_novel": false
+    },
+    {
+      "source": "Eczema",
+      "target": "Young Adult Age",
+      "relationship": "COMMON_IN",
+      "weight": 1.0
+    },
+    {
+      "source": "Eczema",
+      "target": "Female Gender",
+      "relationship": "PREVALENT_IN",
+      "weight": 1.0
+    },
+    {
+      "source": "Eczema",
+      "target": "Normal Blood Pressure",
+      "relationship": "ASSOCIATED_WITH",
+      "weight": 1.0
+    },
+    {
+      "source": "Eczema",
+      "target": "High Cholesterol",
+      "relationship": "CORRELATED_WITH",
+      "weight": 1.0
+    }
+  ]
+}
