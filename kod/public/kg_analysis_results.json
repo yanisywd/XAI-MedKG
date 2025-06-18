@@ -1,0 +1,4703 @@
+{
+  "structural_comparison": {
+    "node_types": {
+      "ground_truth": {
+        "Disease": 77,
+        "Symptom": 4,
+        "Age Group": 4,
+        "Gender": 2,
+        "Blood Pressure": 3,
+        "Cholesterol Level": 3
+      },
+      "prediction": {
+        "Disease": 1,
+        "Symptom": 5,
+        "Age Group": 1,
+        "Gender": 1,
+        "Blood Pressure": 1,
+        "Cholesterol Level": 1
+      }
+    },
+    "relationship_types": {
+      "ground_truth": {
+        "HAS_SYMPTOM": 130,
+        "COMMON_IN": 89,
+        "PREVALENT_IN": 98,
+        "ASSOCIATED_WITH": 95,
+        "CORRELATED_WITH": 92
+      },
+      "prediction": {
+        "DOES_NOT_HAVE_SYMPTOM": 3,
+        "HAS_SYMPTOM": 2,
+        "COMMON_IN": 1,
+        "PREVALENT_IN": 1,
+        "ASSOCIATED_WITH": 1,
+        "CORRELATED_WITH": 1
+      }
+    },
+    "shared_diseases": [
+      "Eczema"
+    ]
+  },
+  "semantic_comparison": {
+    "disease_match": true,
+    "relationship_comparison": {
+      "ASSOCIATED_WITH": {
+        "matches": [
+          "Normal Blood Pressure"
+        ],
+        "ground_truth_only": [
+          "High Blood Pressure"
+        ],
+        "prediction_only": [],
+        "novel_factors": [],
+        "match_ratio": 0.5
+      },
+      "COMMON_IN": {
+        "matches": [
+          "Young Adult Age"
+        ],
+        "ground_truth_only": [
+          "Middle Aged Age"
+        ],
+        "prediction_only": [],
+        "novel_factors": [],
+        "match_ratio": 0.5
+      },
+      "DOES_NOT_HAVE_SYMPTOM": {
+        "matches": [],
+        "ground_truth_only": [],
+        "prediction_only": [
+          "Difficulty Breathing",
+          "Cough",
+          "nausea"
+        ],
+        "novel_factors": [
+          "nausea"
+        ],
+        "match_ratio": 0
+      },
+      "CORRELATED_WITH": {
+        "matches": [
+          "High Cholesterol"
+        ],
+        "ground_truth_only": [
+          "Normal Cholesterol"
+        ],
+        "prediction_only": [],
+        "novel_factors": [],
+        "match_ratio": 0.5
+      },
+      "HAS_SYMPTOM": {
+        "matches": [],
+        "ground_truth_only": [
+          "Fever"
+        ],
+        "prediction_only": [
+          "headache",
+          "Fatigue"
+        ],
+        "novel_factors": [
+          "headache"
+        ],
+        "match_ratio": 0.0
+      },
+      "PREVALENT_IN": {
+        "matches": [
+          "Female Gender"
+        ],
+        "ground_truth_only": [
+          "Male Gender"
+        ],
+        "prediction_only": [],
+        "novel_factors": [],
+        "match_ratio": 0.5
+      }
+    },
+    "novel_factors": [
+      {
+        "factor": "headache",
+        "relationship": "HAS_SYMPTOM",
+        "factor_type": "Symptom"
+      },
+      {
+        "factor": "nausea",
+        "relationship": "DOES_NOT_HAVE_SYMPTOM",
+        "factor_type": "Symptom"
+      }
+    ],
+    "overall_similarity": 0.4444444444444444
+  },
+  "reasoning_paths": {
+    "valid_reasoning": [
+      {
+        "factor_type": "Symptom",
+        "factor": "Cough",
+        "relationship": "DOES_NOT_HAVE_SYMPTOM",
+        "is_valid": true,
+        "evidence": "Valid absence - this symptom is not strongly associated with the disease in ground truth"
+      },
+      {
+        "factor_type": "Symptom",
+        "factor": "Difficulty Breathing",
+        "relationship": "DOES_NOT_HAVE_SYMPTOM",
+        "is_valid": true,
+        "evidence": "Valid absence - this symptom is not strongly associated with the disease in ground truth"
+      },
+      {
+        "factor_type": "Age Group",
+        "factor": "Young Adult Age",
+        "relationship": "COMMON_IN",
+        "is_valid": true,
+        "evidence": "Connection confirmed with weight 0.67"
+      },
+      {
+        "factor_type": "Gender",
+        "factor": "Female Gender",
+        "relationship": "PREVALENT_IN",
+        "is_valid": true,
+        "evidence": "Connection confirmed with weight 0.67"
+      },
+      {
+        "factor_type": "Blood Pressure",
+        "factor": "Normal Blood Pressure",
+        "relationship": "ASSOCIATED_WITH",
+        "is_valid": true,
+        "evidence": "Connection confirmed with weight 0.33"
+      },
+      {
+        "factor_type": "Cholesterol Level",
+        "factor": "High Cholesterol",
+        "relationship": "CORRELATED_WITH",
+        "is_valid": true,
+        "evidence": "Connection confirmed with weight 0.67"
+      }
+    ],
+    "invalid_reasoning": [
+      {
+        "factor_type": "Symptom",
+        "factor": "Fatigue",
+        "relationship": "HAS_SYMPTOM",
+        "is_valid": false,
+        "evidence": ""
+      }
+    ],
+    "novel_reasoning": [
+      {
+        "factor_type": "Symptom",
+        "factor": "headache",
+        "relationship": "HAS_SYMPTOM",
+        "is_novel": true,
+        "evidence": "This is a novel factor not present in the ground truth knowledge graph."
+      },
+      {
+        "factor_type": "Symptom",
+        "factor": "nausea",
+        "relationship": "DOES_NOT_HAVE_SYMPTOM",
+        "is_novel": true,
+        "evidence": "This is a novel factor not present in the ground truth knowledge graph."
+      }
+    ],
+    "reasoning_accuracy": 0.8571428571428571,
+    "missing_important_factors": [
+      {
+        "factor": "Fever",
+        "factor_type": "Symptom",
+        "relationship": "HAS_SYMPTOM",
+        "weight": 0.9666666666666666,
+        "is_key_symptom": true
+      }
+    ]
+  },
+  "counterfactuals": {
+    "alternative_diagnoses": [
+      {
+        "alternative_disease": "Colorectal Cancer",
+        "similarity": 0.5555555555555556,
+        "changes_needed": [
+          {
+            "action": "remove",
+            "factor": "nausea",
+            "factor_type": "Symptom",
+            "relationship": "DOES_NOT_HAVE_SYMPTOM"
+          },
+          {
+            "action": "remove",
+            "factor": "Difficulty Breathing",
+            "factor_type": "Symptom",
+            "relationship": "DOES_NOT_HAVE_SYMPTOM"
+          },
+          {
+            "action": "remove",
+            "factor": "Cough",
+            "factor_type": "Symptom",
+            "relationship": "DOES_NOT_HAVE_SYMPTOM"
+          },
+          {
+            "action": "remove",
+            "factor": "headache",
+            "factor_type": "Symptom",
+            "relationship": "HAS_SYMPTOM"
+          }
+        ]
+      },
+      {
+        "alternative_disease": "Myocardial Infarction (Heart...",
+        "similarity": 0.5454545454545454,
+        "changes_needed": [
+          {
+            "action": "add",
+            "factor": "Fever",
+            "factor_type": "Symptom",
+            "relationship": "HAS_SYMPTOM"
+          },
+          {
+            "action": "add",
+            "factor": "High Blood Pressure",
+            "factor_type": "Blood Pressure",
+            "relationship": "ASSOCIATED_WITH"
+          },
+          {
+            "action": "remove",
+            "factor": "Normal Blood Pressure",
+            "factor_type": "Blood Pressure",
+            "relationship": "ASSOCIATED_WITH"
+          },
+          {
+            "action": "remove",
+            "factor": "headache",
+            "factor_type": "Symptom",
+            "relationship": "HAS_SYMPTOM"
+          },
+          {
+            "action": "remove",
+            "factor": "nausea",
+            "factor_type": "Symptom",
+            "relationship": "DOES_NOT_HAVE_SYMPTOM"
+          }
+        ]
+      },
+      {
+        "alternative_disease": "Cerebral Palsy",
+        "similarity": 0.5,
+        "changes_needed": [
+          {
+            "action": "add",
+            "factor": "Normal Cholesterol",
+            "factor_type": "Cholesterol Level",
+            "relationship": "CORRELATED_WITH"
+          },
+          {
+            "action": "remove",
+            "factor": "headache",
+            "factor_type": "Symptom",
+            "relationship": "HAS_SYMPTOM"
+          },
+          {
+            "action": "remove",
+            "factor": "Cough",
+            "factor_type": "Symptom",
+            "relationship": "DOES_NOT_HAVE_SYMPTOM"
+          },
+          {
+            "action": "remove",
+            "factor": "nausea",
+            "factor_type": "Symptom",
+            "relationship": "DOES_NOT_HAVE_SYMPTOM"
+          },
+          {
+            "action": "remove",
+            "factor": "High Cholesterol",
+            "factor_type": "Cholesterol Level",
+            "relationship": "CORRELATED_WITH"
+          }
+        ]
+      }
+    ],
+    "minimal_changes_explanation": {
+      "alternative_disease": "Colorectal Cancer",
+      "changes": [
+        {
+          "action": "remove",
+          "factor": "nausea",
+          "factor_type": "Symptom",
+          "relationship": "DOES_NOT_HAVE_SYMPTOM"
+        },
+        {
+          "action": "remove",
+          "factor": "Difficulty Breathing",
+          "factor_type": "Symptom",
+          "relationship": "DOES_NOT_HAVE_SYMPTOM"
+        },
+        {
+          "action": "remove",
+          "factor": "Cough",
+          "factor_type": "Symptom",
+          "relationship": "DOES_NOT_HAVE_SYMPTOM"
+        },
+        {
+          "action": "remove",
+          "factor": "headache",
+          "factor_type": "Symptom",
+          "relationship": "HAS_SYMPTOM"
+        }
+      ],
+      "explanation": "To change the diagnosis from Eczema to Colorectal Cancer, the following changes would be needed:\n\n\nRemovals:\n- Remove nausea (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove Difficulty Breathing (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove Cough (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove headache (Symptom): The patient would need to no longer has symptom this factor.\n"
+    }
+  },
+  "explanations": {
+    "assessment": "STRONG MATCH",
+    "assessment_explanation": "The model's reasoning is well-aligned with medical knowledge. 6 out of 7 factors used in the diagnosis are valid according to the ground truth knowledge graph. Additionally, the model introduced 2 novel factor(s) not present in the ground truth knowledge.",
+    "valid_reasoning": [
+      {
+        "factor": "Cough",
+        "explanation": "The model correctly identified that Eczema does not have Cough."
+      },
+      {
+        "factor": "Difficulty Breathing",
+        "explanation": "The model correctly identified that Eczema does not have Difficulty Breathing."
+      },
+      {
+        "factor": "Young Adult Age",
+        "explanation": "The model correctly identified that Eczema common in Young Adult Age."
+      },
+      {
+        "factor": "Female Gender",
+        "explanation": "The model correctly identified that Eczema prevalent in Female Gender."
+      },
+      {
+        "factor": "Normal Blood Pressure",
+        "explanation": "The model correctly identified that Eczema associated with Normal Blood Pressure."
+      },
+      {
+        "factor": "High Cholesterol",
+        "explanation": "The model correctly identified that Eczema correlated with High Cholesterol."
+      }
+    ],
+    "invalid_reasoning": [
+      {
+        "factor": "Fatigue",
+        "explanation": "The model incorrectly identified that Eczema has symptom Fatigue. This association is not supported by medical knowledge."
+      }
+    ],
+    "novel_reasoning": [
+      {
+        "factor": "headache",
+        "explanation": "The model introduced a novel factor: headache (Symptom). This factor is not present in the ground truth knowledge graph, suggesting the model is including new considerations in its diagnosis."
+      },
+      {
+        "factor": "nausea",
+        "explanation": "The model introduced a novel factor: nausea (Symptom). This factor is not present in the ground truth knowledge graph, suggesting the model is including new considerations in its diagnosis."
+      }
+    ],
+    "missing_factors": [
+      {
+        "factor": "Fever",
+        "explanation": "The model completely omitted an important symptom: Fever. Medical knowledge indicates that Eczema typically has symptom Fever (importance: 0.97). This symptom should always be assessed.",
+        "is_key_symptom": true
+      }
+    ],
+    "summary": "Diagnosis: Eczema\n\nAssessment: STRONG MATCH\n\nThe model's reasoning is well-aligned with medical knowledge. 6 out of 7 factors used in the diagnosis are valid according to the ground truth knowledge graph. Additionally, the model introduced 2 novel factor(s) not present in the ground truth knowledge.\n\nCORRECT ASSOCIATIONS:\n- The model correctly identified that Eczema does not have Cough.\n- The model correctly identified that Eczema does not have Difficulty Breathing.\n- The model correctly identified that Eczema common in Young Adult Age.\n- The model correctly identified that Eczema prevalent in Female Gender.\n- The model correctly identified that Eczema associated with Normal Blood Pressure.\n- The model correctly identified that Eczema correlated with High Cholesterol.\n\nINCORRECT ASSOCIATIONS:\n- The model incorrectly identified that Eczema has symptom Fatigue. This association is not supported by medical knowledge.\n\nNOVEL FACTORS INTRODUCED:\n- The model introduced a novel factor: headache (Symptom). This factor is not present in the ground truth knowledge graph, suggesting the model is including new considerations in its diagnosis.\n- The model introduced a novel factor: nausea (Symptom). This factor is not present in the ground truth knowledge graph, suggesting the model is including new considerations in its diagnosis.\n\nMISSING IMPORTANT FACTORS:\n- The model completely omitted an important symptom: Fever. Medical knowledge indicates that Eczema typically has symptom Fever (importance: 0.97). This symptom should always be assessed.\n\nALTERNATIVE DIAGNOSIS:\nTo change the diagnosis from Eczema to Colorectal Cancer, the following changes would be needed:\n\n\nRemovals:\n- Remove nausea (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove Difficulty Breathing (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove Cough (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove headache (Symptom): The patient would need to no longer has symptom this factor.\n"
+  },
+  "metrics": {
+    "reasoning_accuracy": 0.8571428571428571,
+    "semantic_similarity": 0.4444444444444444,
+    "factor_coverage": 0.6,
+    "explicit_novelty": 0.2222222222222222,
+    "novelty": 0.6666666666666666,
+    "combined_novelty": 0.2222222222222222,
+    "confidence_score": 0.6561904761904762,
+    "reliability": "MEDIUM"
+  },
+  "visualization_data": {
+    "combined_graph": {
+      "nodes": [
+        {
+          "id": "Influenza",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Asthma",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Eczema",
+          "type": "Disease",
+          "source": "both"
+        },
+        {
+          "id": "Depression",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Liver Cancer",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Stroke",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Urinary Tract Infection",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Bipolar Disorder",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Bronchitis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Cerebral Palsy",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Colorectal Cancer",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Hypertensive Heart Disease",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Multiple Sclerosis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Myocardial Infarction (Heart...",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Urinary Tract Infection (UTI)",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Common Cold",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Migraine",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Pneumonia",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Cirrhosis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Conjunctivitis (Pink Eye)",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Gastroenteritis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Hyperthyroidism",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Kidney Cancer",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Liver Disease",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Malaria",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Pancreatitis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Rheumatoid Arthritis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Spina Bifida",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Ulcerative Colitis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Anxiety Disorders",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Diabetes",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Osteoarthritis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Klinefelter Syndrome",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Chickenpox",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Coronary Artery Disease",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Eating Disorders (Anorexia,...",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Fibromyalgia",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Hemophilia",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Hypoglycemia",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Lymphoma",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Psoriasis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Tuberculosis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Hypothyroidism",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Kidney Disease",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Allergic Rhinitis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Cataracts",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Crohn's Disease",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Hypertension",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Osteoporosis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Pneumocystis Pneumonia (PCP)",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Scoliosis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Sickle Cell Anemia",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Tetanus",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Down Syndrome",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Ebola Virus",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Lyme Disease",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Pancreatic Cancer",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Pneumothorax",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Hemorrhoids",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Polycystic Ovary Syndrome (PCOS)",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Systemic Lupus Erythematosus...",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Typhoid Fever",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Chronic Kidney Disease",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Hepatitis B",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Parkinson's Disease",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Prader-Willi Syndrome",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Thyroid Cancer",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Alzheimer's Disease",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Chronic Obstructive Pulmonary Disease (COPD)",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Dementia",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Diverticulitis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Lung Cancer",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Mumps",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Gout",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Testicular Cancer",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Tonsillitis",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Williams Syndrome",
+          "type": "Disease",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Fever",
+          "type": "Symptom",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Cough",
+          "type": "Symptom",
+          "source": "both"
+        },
+        {
+          "id": "Fatigue",
+          "type": "Symptom",
+          "source": "both"
+        },
+        {
+          "id": "Difficulty Breathing",
+          "type": "Symptom",
+          "source": "both"
+        },
+        {
+          "id": "Child Age",
+          "type": "Age Group",
+          "min_age": 0,
+          "max_age": 17,
+          "source": "ground_truth"
+        },
+        {
+          "id": "Young Adult Age",
+          "type": "Age Group",
+          "min_age": 18,
+          "max_age": 34,
+          "source": "both"
+        },
+        {
+          "id": "Middle Aged Age",
+          "type": "Age Group",
+          "min_age": 35,
+          "max_age": 59,
+          "source": "ground_truth"
+        },
+        {
+          "id": "Senior Age",
+          "type": "Age Group",
+          "min_age": 60,
+          "max_age": 120,
+          "source": "ground_truth"
+        },
+        {
+          "id": "Female Gender",
+          "type": "Gender",
+          "source": "both"
+        },
+        {
+          "id": "Male Gender",
+          "type": "Gender",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Low Blood Pressure",
+          "type": "Blood Pressure",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Normal Blood Pressure",
+          "type": "Blood Pressure",
+          "source": "both"
+        },
+        {
+          "id": "High Blood Pressure",
+          "type": "Blood Pressure",
+          "source": "ground_truth"
+        },
+        {
+          "id": "Normal Cholesterol",
+          "type": "Cholesterol Level",
+          "source": "ground_truth"
+        },
+        {
+          "id": "High Cholesterol",
+          "type": "Cholesterol Level",
+          "source": "both"
+        },
+        {
+          "id": "Low Cholesterol",
+          "type": "Cholesterol Level",
+          "source": "ground_truth"
+        },
+        {
+          "id": "headache",
+          "type": "Symptom",
+          "is_novel": true,
+          "source": "prediction"
+        },
+        {
+          "id": "nausea",
+          "type": "Symptom",
+          "is_novel": true,
+          "source": "prediction"
+        }
+      ],
+      "links": [
+        {
+          "source": "Influenza",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Asthma",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.9444444444444444,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eczema",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.9666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Stroke",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.7272727272727273,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bronchitis",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Multiple Sclerosis",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Myocardial Infarction (Heart...",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection (UTI)",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Common Cold",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Migraine",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumonia",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gastroenteritis",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hyperthyroidism",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Malaria",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Anxiety Disorders",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diabetes",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoarthritis",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tuberculosis",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Disease",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Allergic Rhinitis",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertension",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoporosis",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.7142857142857143,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumocystis Pneumonia (PCP)",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ebola Virus",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lyme Disease",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Polycystic Ovary Syndrome (PCOS)",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Parkinson's Disease",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Obstructive Pulmonary Disease (COPD)",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lung Cancer",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gout",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tonsillitis",
+          "target": "Fever",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Influenza",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.8333333333333334,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Asthma",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.7222222222222222,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Cancer",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.75,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bronchitis",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Myocardial Infarction (Heart...",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumonia",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Conjunctivitis (Pink Eye)",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gastroenteritis",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hyperthyroidism",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Anxiety Disorders",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diabetes",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoarthritis",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chickenpox",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lymphoma",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Psoriasis",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tuberculosis",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Allergic Rhinitis",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumocystis Pneumonia (PCP)",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ebola Virus",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Polycystic Ovary Syndrome (PCOS)",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Systemic Lupus Erythematosus...",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Typhoid Fever",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hepatitis B",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Parkinson's Disease",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Alzheimer's Disease",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tonsillitis",
+          "target": "Cough",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Influenza",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Depression",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Cancer",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Stroke",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.8181818181818182,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bipolar Disorder",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bronchitis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cerebral Palsy",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Colorectal Cancer",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertensive Heart Disease",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Myocardial Infarction (Heart...",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Common Cold",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumonia",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cirrhosis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gastroenteritis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hyperthyroidism",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Cancer",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Disease",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatitis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Rheumatoid Arthritis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Spina Bifida",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ulcerative Colitis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Anxiety Disorders",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diabetes",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoarthritis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Klinefelter Syndrome",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Coronary Artery Disease",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eating Disorders (Anorexia,...",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Fibromyalgia",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hemophilia",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypoglycemia",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tuberculosis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypothyroidism",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Disease",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Allergic Rhinitis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cataracts",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Crohn's Disease",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertension",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoporosis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumocystis Pneumonia (PCP)",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Sickle Cell Anemia",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tetanus",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Down Syndrome",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ebola Virus",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatic Cancer",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumothorax",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Systemic Lupus Erythematosus...",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Kidney Disease",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hepatitis B",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Prader-Willi Syndrome",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Thyroid Cancer",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Obstructive Pulmonary Disease (COPD)",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Dementia",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diverticulitis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lung Cancer",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Mumps",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gout",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Testicular Cancer",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tonsillitis",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Williams Syndrome",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Influenza",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.8333333333333334,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Asthma",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.9444444444444444,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bronchitis",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cerebral Palsy",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Myocardial Infarction (Heart...",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Common Cold",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumonia",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gastroenteritis",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tuberculosis",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ebola Virus",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumothorax",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Obstructive Pulmonary Disease (COPD)",
+          "target": "Difficulty Breathing",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Influenza",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.8333333333333334,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Asthma",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Asthma",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.6111111111111112,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eczema",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eczema",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Depression",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Depression",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Cancer",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Stroke",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.8181818181818182,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bipolar Disorder",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bronchitis",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cerebral Palsy",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Colorectal Cancer",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertensive Heart Disease",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Multiple Sclerosis",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Multiple Sclerosis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Myocardial Infarction (Heart...",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection (UTI)",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Common Cold",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Migraine",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumonia",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cirrhosis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Conjunctivitis (Pink Eye)",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gastroenteritis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hyperthyroidism",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Cancer",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Cancer",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Disease",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Malaria",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatitis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatitis",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Rheumatoid Arthritis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Rheumatoid Arthritis",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Spina Bifida",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ulcerative Colitis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Anxiety Disorders",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diabetes",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoarthritis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Klinefelter Syndrome",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chickenpox",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Coronary Artery Disease",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eating Disorders (Anorexia,...",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Fibromyalgia",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hemophilia",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hemophilia",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypoglycemia",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lymphoma",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Psoriasis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tuberculosis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tuberculosis",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypothyroidism",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Disease",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Disease",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Allergic Rhinitis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cataracts",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Crohn's Disease",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertension",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.4,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertension",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoporosis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 0.7142857142857143,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumocystis Pneumonia (PCP)",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Scoliosis",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Sickle Cell Anemia",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tetanus",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Down Syndrome",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ebola Virus",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lyme Disease",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatic Cancer",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumothorax",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hemorrhoids",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Polycystic Ovary Syndrome (PCOS)",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Systemic Lupus Erythematosus...",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Typhoid Fever",
+          "target": "Middle Aged Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Kidney Disease",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hepatitis B",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Parkinson's Disease",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Prader-Willi Syndrome",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Thyroid Cancer",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Alzheimer's Disease",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Obstructive Pulmonary Disease (COPD)",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Dementia",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diverticulitis",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lung Cancer",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Mumps",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gout",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Testicular Cancer",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tonsillitis",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Williams Syndrome",
+          "target": "Senior Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Influenza",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Influenza",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Asthma",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6111111111111112,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Asthma",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3888888888888889,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eczema",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eczema",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Depression",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Depression",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Cancer",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.75,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Stroke",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.5454545454545454,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Stroke",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.45454545454545453,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bipolar Disorder",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bronchitis",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cerebral Palsy",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Colorectal Cancer",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertensive Heart Disease",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Multiple Sclerosis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Myocardial Infarction (Heart...",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection (UTI)",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Common Cold",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Migraine",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Migraine",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.4,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumonia",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumonia",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.4,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cirrhosis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Conjunctivitis (Pink Eye)",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gastroenteritis",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gastroenteritis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hyperthyroidism",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Cancer",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Cancer",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Disease",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Disease",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Malaria",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatitis",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatitis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Rheumatoid Arthritis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Rheumatoid Arthritis",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Spina Bifida",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ulcerative Colitis",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ulcerative Colitis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Anxiety Disorders",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Anxiety Disorders",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diabetes",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diabetes",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.4,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoarthritis",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoarthritis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Klinefelter Syndrome",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chickenpox",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Coronary Artery Disease",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eating Disorders (Anorexia,...",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Fibromyalgia",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hemophilia",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypoglycemia",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lymphoma",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Psoriasis",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Psoriasis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tuberculosis",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tuberculosis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypothyroidism",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Disease",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Allergic Rhinitis",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cataracts",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Crohn's Disease",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertension",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertension",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.4,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoporosis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.7142857142857143,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumocystis Pneumonia (PCP)",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Scoliosis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Sickle Cell Anemia",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tetanus",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Down Syndrome",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ebola Virus",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lyme Disease",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatic Cancer",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumothorax",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hemorrhoids",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Polycystic Ovary Syndrome (PCOS)",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Systemic Lupus Erythematosus...",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Typhoid Fever",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Kidney Disease",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hepatitis B",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Parkinson's Disease",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Prader-Willi Syndrome",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Thyroid Cancer",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Alzheimer's Disease",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Alzheimer's Disease",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Obstructive Pulmonary Disease (COPD)",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Dementia",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diverticulitis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lung Cancer",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Mumps",
+          "target": "Male Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gout",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Testicular Cancer",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tonsillitis",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Williams Syndrome",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Influenza",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Influenza",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Asthma",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.7777777777777778,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eczema",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eczema",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Depression",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Depression",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Cancer",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.75,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Stroke",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.7272727272727273,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bipolar Disorder",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bronchitis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cerebral Palsy",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Colorectal Cancer",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertensive Heart Disease",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Multiple Sclerosis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Myocardial Infarction (Heart...",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection (UTI)",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Common Cold",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Migraine",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Migraine",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.4,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumonia",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumonia",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.4,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cirrhosis",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Conjunctivitis (Pink Eye)",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gastroenteritis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gastroenteritis",
+          "target": "Low Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hyperthyroidism",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Cancer",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Disease",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Disease",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Malaria",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatitis",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatitis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Rheumatoid Arthritis",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Rheumatoid Arthritis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Spina Bifida",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ulcerative Colitis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ulcerative Colitis",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Anxiety Disorders",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Anxiety Disorders",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diabetes",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diabetes",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.4,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoarthritis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Klinefelter Syndrome",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chickenpox",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Coronary Artery Disease",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Coronary Artery Disease",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eating Disorders (Anorexia,...",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Fibromyalgia",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hemophilia",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypoglycemia",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lymphoma",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Psoriasis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Psoriasis",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tuberculosis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypothyroidism",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Disease",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Allergic Rhinitis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cataracts",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Crohn's Disease",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertension",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoporosis",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.5714285714285714,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoporosis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.42857142857142855,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumocystis Pneumonia (PCP)",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Scoliosis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Sickle Cell Anemia",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tetanus",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Down Syndrome",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ebola Virus",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lyme Disease",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatic Cancer",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumothorax",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hemorrhoids",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Polycystic Ovary Syndrome (PCOS)",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Systemic Lupus Erythematosus...",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Typhoid Fever",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Kidney Disease",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hepatitis B",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Parkinson's Disease",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Prader-Willi Syndrome",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Thyroid Cancer",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Alzheimer's Disease",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Alzheimer's Disease",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Obstructive Pulmonary Disease (COPD)",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Dementia",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diverticulitis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lung Cancer",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lung Cancer",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Mumps",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gout",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Testicular Cancer",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tonsillitis",
+          "target": "High Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Williams Syndrome",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Influenza",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.8333333333333334,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Asthma",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.7222222222222222,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eczema",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eczema",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Depression",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Depression",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Cancer",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.75,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Stroke",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.9090909090909091,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bipolar Disorder",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Bronchitis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.8,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cerebral Palsy",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Colorectal Cancer",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertensive Heart Disease",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Multiple Sclerosis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Myocardial Infarction (Heart...",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Urinary Tract Infection (UTI)",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Common Cold",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Migraine",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Migraine",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.4,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumonia",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumonia",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.4,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cirrhosis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Conjunctivitis (Pink Eye)",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gastroenteritis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gastroenteritis",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hyperthyroidism",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Cancer",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Cancer",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Liver Disease",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Malaria",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatitis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatitis",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Rheumatoid Arthritis",
+          "target": "Low Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Rheumatoid Arthritis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Spina Bifida",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ulcerative Colitis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Anxiety Disorders",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Anxiety Disorders",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Anxiety Disorders",
+          "target": "Low Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diabetes",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoarthritis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoarthritis",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Klinefelter Syndrome",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chickenpox",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Coronary Artery Disease",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Coronary Artery Disease",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eating Disorders (Anorexia,...",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Fibromyalgia",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hemophilia",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypoglycemia",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lymphoma",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Psoriasis",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.6666666666666666,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Psoriasis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.3333333333333333,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tuberculosis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypothyroidism",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Disease",
+          "target": "Low Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Kidney Disease",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.5,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Allergic Rhinitis",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Cataracts",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Crohn's Disease",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertension",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.6,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hypertension",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.4,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Osteoporosis",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 0.5714285714285714,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumocystis Pneumonia (PCP)",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Scoliosis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Sickle Cell Anemia",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tetanus",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Down Syndrome",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Ebola Virus",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lyme Disease",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pancreatic Cancer",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Pneumothorax",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hemorrhoids",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Polycystic Ovary Syndrome (PCOS)",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Systemic Lupus Erythematosus...",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Typhoid Fever",
+          "target": "Low Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Kidney Disease",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Hepatitis B",
+          "target": "Low Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Parkinson's Disease",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Prader-Willi Syndrome",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Thyroid Cancer",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Alzheimer's Disease",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Chronic Obstructive Pulmonary Disease (COPD)",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Dementia",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Diverticulitis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Lung Cancer",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Mumps",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Gout",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Testicular Cancer",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Tonsillitis",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Williams Syndrome",
+          "target": "Normal Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "ground_truth"
+        },
+        {
+          "source": "Eczema",
+          "target": "Cough",
+          "relationship": "DOES_NOT_HAVE_SYMPTOM",
+          "weight": 1.0,
+          "is_novel": false,
+          "source_graph": "prediction"
+        },
+        {
+          "source": "Eczema",
+          "target": "Fatigue",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "is_novel": false,
+          "source_graph": "prediction"
+        },
+        {
+          "source": "Eczema",
+          "target": "Difficulty Breathing",
+          "relationship": "DOES_NOT_HAVE_SYMPTOM",
+          "weight": 1.0,
+          "is_novel": false,
+          "source_graph": "prediction"
+        },
+        {
+          "source": "Eczema",
+          "target": "headache",
+          "relationship": "HAS_SYMPTOM",
+          "weight": 1.0,
+          "is_novel": true,
+          "source_graph": "prediction"
+        },
+        {
+          "source": "Eczema",
+          "target": "nausea",
+          "relationship": "DOES_NOT_HAVE_SYMPTOM",
+          "weight": 1.0,
+          "is_novel": true,
+          "source_graph": "prediction"
+        },
+        {
+          "source": "Eczema",
+          "target": "Young Adult Age",
+          "relationship": "COMMON_IN",
+          "weight": 1.0,
+          "source_graph": "both",
+          "ground_truth_weight": 0.6666666666666666
+        },
+        {
+          "source": "Eczema",
+          "target": "Female Gender",
+          "relationship": "PREVALENT_IN",
+          "weight": 1.0,
+          "source_graph": "both",
+          "ground_truth_weight": 0.6666666666666666
+        },
+        {
+          "source": "Eczema",
+          "target": "Normal Blood Pressure",
+          "relationship": "ASSOCIATED_WITH",
+          "weight": 1.0,
+          "source_graph": "both",
+          "ground_truth_weight": 0.3333333333333333
+        },
+        {
+          "source": "Eczema",
+          "target": "High Cholesterol",
+          "relationship": "CORRELATED_WITH",
+          "weight": 1.0,
+          "source_graph": "both",
+          "ground_truth_weight": 0.6666666666666666
+        }
+      ]
+    },
+    "assessment": {
+      "predicted_disease": "Eczema",
+      "assessment": "STRONG MATCH",
+      "confidence_score": 0.6561904761904762,
+      "reasoning_accuracy": 0.8571428571428571,
+      "semantic_similarity": 0.4444444444444444,
+      "factor_coverage": 0.6,
+      "novelty": 0.2222222222222222,
+      "reliability": "MEDIUM"
+    },
+    "explanations": {
+      "valid_reasoning": [
+        {
+          "factor": "Cough",
+          "explanation": "The model correctly identified that Eczema does not have Cough."
+        },
+        {
+          "factor": "Difficulty Breathing",
+          "explanation": "The model correctly identified that Eczema does not have Difficulty Breathing."
+        },
+        {
+          "factor": "Young Adult Age",
+          "explanation": "The model correctly identified that Eczema common in Young Adult Age."
+        },
+        {
+          "factor": "Female Gender",
+          "explanation": "The model correctly identified that Eczema prevalent in Female Gender."
+        },
+        {
+          "factor": "Normal Blood Pressure",
+          "explanation": "The model correctly identified that Eczema associated with Normal Blood Pressure."
+        },
+        {
+          "factor": "High Cholesterol",
+          "explanation": "The model correctly identified that Eczema correlated with High Cholesterol."
+        }
+      ],
+      "invalid_reasoning": [
+        {
+          "factor": "Fatigue",
+          "explanation": "The model incorrectly identified that Eczema has symptom Fatigue. This association is not supported by medical knowledge."
+        }
+      ],
+      "novel_reasoning": [
+        {
+          "factor": "headache",
+          "explanation": "The model introduced a novel factor: headache (Symptom). This factor is not present in the ground truth knowledge graph, suggesting the model is including new considerations in its diagnosis."
+        },
+        {
+          "factor": "nausea",
+          "explanation": "The model introduced a novel factor: nausea (Symptom). This factor is not present in the ground truth knowledge graph, suggesting the model is including new considerations in its diagnosis."
+        }
+      ],
+      "missing_factors": [
+        {
+          "factor": "Fever",
+          "explanation": "The model completely omitted an important symptom: Fever. Medical knowledge indicates that Eczema typically has symptom Fever (importance: 0.97). This symptom should always be assessed.",
+          "is_key_symptom": true
+        }
+      ],
+      "summary": "Diagnosis: Eczema\n\nAssessment: STRONG MATCH\n\nThe model's reasoning is well-aligned with medical knowledge. 6 out of 7 factors used in the diagnosis are valid according to the ground truth knowledge graph. Additionally, the model introduced 2 novel factor(s) not present in the ground truth knowledge.\n\nCORRECT ASSOCIATIONS:\n- The model correctly identified that Eczema does not have Cough.\n- The model correctly identified that Eczema does not have Difficulty Breathing.\n- The model correctly identified that Eczema common in Young Adult Age.\n- The model correctly identified that Eczema prevalent in Female Gender.\n- The model correctly identified that Eczema associated with Normal Blood Pressure.\n- The model correctly identified that Eczema correlated with High Cholesterol.\n\nINCORRECT ASSOCIATIONS:\n- The model incorrectly identified that Eczema has symptom Fatigue. This association is not supported by medical knowledge.\n\nNOVEL FACTORS INTRODUCED:\n- The model introduced a novel factor: headache (Symptom). This factor is not present in the ground truth knowledge graph, suggesting the model is including new considerations in its diagnosis.\n- The model introduced a novel factor: nausea (Symptom). This factor is not present in the ground truth knowledge graph, suggesting the model is including new considerations in its diagnosis.\n\nMISSING IMPORTANT FACTORS:\n- The model completely omitted an important symptom: Fever. Medical knowledge indicates that Eczema typically has symptom Fever (importance: 0.97). This symptom should always be assessed.\n\nALTERNATIVE DIAGNOSIS:\nTo change the diagnosis from Eczema to Colorectal Cancer, the following changes would be needed:\n\n\nRemovals:\n- Remove nausea (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove Difficulty Breathing (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove Cough (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove headache (Symptom): The patient would need to no longer has symptom this factor.\n"
+    },
+    "counterfactuals": {
+      "alternatives": [
+        {
+          "alternative_disease": "Colorectal Cancer",
+          "similarity": 0.5555555555555556,
+          "changes_needed": [
+            {
+              "action": "remove",
+              "factor": "nausea",
+              "factor_type": "Symptom",
+              "relationship": "DOES_NOT_HAVE_SYMPTOM"
+            },
+            {
+              "action": "remove",
+              "factor": "Difficulty Breathing",
+              "factor_type": "Symptom",
+              "relationship": "DOES_NOT_HAVE_SYMPTOM"
+            },
+            {
+              "action": "remove",
+              "factor": "Cough",
+              "factor_type": "Symptom",
+              "relationship": "DOES_NOT_HAVE_SYMPTOM"
+            },
+            {
+              "action": "remove",
+              "factor": "headache",
+              "factor_type": "Symptom",
+              "relationship": "HAS_SYMPTOM"
+            }
+          ]
+        },
+        {
+          "alternative_disease": "Myocardial Infarction (Heart...",
+          "similarity": 0.5454545454545454,
+          "changes_needed": [
+            {
+              "action": "add",
+              "factor": "Fever",
+              "factor_type": "Symptom",
+              "relationship": "HAS_SYMPTOM"
+            },
+            {
+              "action": "add",
+              "factor": "High Blood Pressure",
+              "factor_type": "Blood Pressure",
+              "relationship": "ASSOCIATED_WITH"
+            },
+            {
+              "action": "remove",
+              "factor": "Normal Blood Pressure",
+              "factor_type": "Blood Pressure",
+              "relationship": "ASSOCIATED_WITH"
+            },
+            {
+              "action": "remove",
+              "factor": "headache",
+              "factor_type": "Symptom",
+              "relationship": "HAS_SYMPTOM"
+            },
+            {
+              "action": "remove",
+              "factor": "nausea",
+              "factor_type": "Symptom",
+              "relationship": "DOES_NOT_HAVE_SYMPTOM"
+            }
+          ]
+        },
+        {
+          "alternative_disease": "Cerebral Palsy",
+          "similarity": 0.5,
+          "changes_needed": [
+            {
+              "action": "add",
+              "factor": "Normal Cholesterol",
+              "factor_type": "Cholesterol Level",
+              "relationship": "CORRELATED_WITH"
+            },
+            {
+              "action": "remove",
+              "factor": "headache",
+              "factor_type": "Symptom",
+              "relationship": "HAS_SYMPTOM"
+            },
+            {
+              "action": "remove",
+              "factor": "Cough",
+              "factor_type": "Symptom",
+              "relationship": "DOES_NOT_HAVE_SYMPTOM"
+            },
+            {
+              "action": "remove",
+              "factor": "nausea",
+              "factor_type": "Symptom",
+              "relationship": "DOES_NOT_HAVE_SYMPTOM"
+            },
+            {
+              "action": "remove",
+              "factor": "High Cholesterol",
+              "factor_type": "Cholesterol Level",
+              "relationship": "CORRELATED_WITH"
+            }
+          ]
+        }
+      ],
+      "minimal_changes": {
+        "alternative_disease": "Colorectal Cancer",
+        "changes": [
+          {
+            "action": "remove",
+            "factor": "nausea",
+            "factor_type": "Symptom",
+            "relationship": "DOES_NOT_HAVE_SYMPTOM"
+          },
+          {
+            "action": "remove",
+            "factor": "Difficulty Breathing",
+            "factor_type": "Symptom",
+            "relationship": "DOES_NOT_HAVE_SYMPTOM"
+          },
+          {
+            "action": "remove",
+            "factor": "Cough",
+            "factor_type": "Symptom",
+            "relationship": "DOES_NOT_HAVE_SYMPTOM"
+          },
+          {
+            "action": "remove",
+            "factor": "headache",
+            "factor_type": "Symptom",
+            "relationship": "HAS_SYMPTOM"
+          }
+        ],
+        "explanation": "To change the diagnosis from Eczema to Colorectal Cancer, the following changes would be needed:\n\n\nRemovals:\n- Remove nausea (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove Difficulty Breathing (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove Cough (Symptom): The patient would need to no longer does not have symptom this factor.\n- Remove headache (Symptom): The patient would need to no longer has symptom this factor.\n"
+      }
+    }
+  }
+}
